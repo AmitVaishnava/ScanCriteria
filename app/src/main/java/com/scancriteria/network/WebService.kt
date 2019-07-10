@@ -5,7 +5,6 @@ import com.scancriteria.ScanProperty
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -31,9 +30,9 @@ private val retrofit = Retrofit.Builder()
 
 interface ApiService {
     @GET("data")
-    fun getScanData(): Call<List<ScanProperty>>
+    fun getScanData(): Deferred<List<ScanProperty>>
 }
 
 object WebApi {
-    val retrofitApi: ApiService by lazy { retrofit.create(ApiService::class.java) }
+    val retrofitService: ApiService by lazy { retrofit.create(ApiService::class.java) }
 }
