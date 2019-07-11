@@ -6,7 +6,8 @@ class ScanPropertiesContract {
     interface ScanPropertiesView : BaseContract.BaseView {
         fun showProgressbar()
         fun hideProgressbar()
-        fun showScanProperties(searchList: List<ScanProperty>)
+        fun showScanProperties(scanProperties: List<ScanProperty>)
+        fun showScanProperty(scanProperty: ScanProperty)
     }
 
     interface ScanPropertiesUserActionListener : BaseContract.BaseUserActionsListener {

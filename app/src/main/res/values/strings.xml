@@ -2,4 +2,9 @@
     <string name="app_name">Scan Criteria</string>
     <string name="no_internet_connection_msg">Internet NO</string>
     <string name="default_error_msg">default error</string>
+    <string name="brackets">
+        <font color='#0000FF'>(%1$s)</font>
+    </string>
+    <string name="open_brackets">(</string>
+    <string name="close_brackets">)</string>
 </resources>
