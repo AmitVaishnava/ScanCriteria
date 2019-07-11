@@ -1,4 +1,4 @@
-package com.scancriteria
+package com.scancriteria.scanproperty
 
 import com.scancriteria.base.BaseContract
 

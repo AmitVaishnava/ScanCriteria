@@ -1,4 +1,4 @@
-package com.scancriteria
+package com.scancriteria.scanproperty
 
 import android.content.Context
 import android.os.Bundle
@@ -10,11 +10,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.scancriteria.R
 import com.scancriteria.base.BaseFragment
 
 
 class ScanPropertiesFragment : BaseFragment<ScanPropertiesContract.ScanPropertiesUserActionListener>(),
-    ScanPropertiesContract.ScanPropertiesView, ScanPropertiesAdapter.ScanPropertiesAdapterListener {
+    ScanPropertiesContract.ScanPropertiesView,
+    ScanPropertiesAdapter.ScanPropertiesAdapterListener {
 
     lateinit var recyclerView: RecyclerView
     lateinit var scanPropertiesAdapter: ScanPropertiesAdapter

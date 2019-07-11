@@ -2,6 +2,7 @@ package com.scancriteria
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.scancriteria.scanproperty.ScanPropertiesFragment
 
 class MainActivity : AppCompatActivity(), ScanPropertiesFragment.ScanPropertiesFragmentListener {
     override fun OnItemClick() {

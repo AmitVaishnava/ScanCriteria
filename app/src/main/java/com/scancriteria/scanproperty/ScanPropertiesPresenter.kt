@@ -1,4 +1,4 @@
-package com.scancriteria
+package com.scancriteria.scanproperty
 
 import android.text.TextUtils
 import com.scancriteria.base.BasePresenter
