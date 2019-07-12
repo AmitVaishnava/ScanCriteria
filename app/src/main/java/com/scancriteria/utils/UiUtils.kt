@@ -5,30 +5,38 @@ import android.content.Context
 import android.content.DialogInterface
 import android.support.v4.content.ContextCompat
 import android.text.SpannableString
+import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
+import android.view.View
 import com.scancriteria.ScanApp
+import com.scancriteria.scanproperty.ScanPropertiesAdapter
 
 
 object UiUtils {
 
     fun spannableBlueBrackets(
         text: String,
-        startPosition: MutableList<Int>?,
-        endPosition: MutableList<Int>?
+        startPosition: HashMap<String, Pair<Int, Int>>,
+        param: ScanPropertiesAdapter.SpannableListener
 //        ,        clickableSpan: Array<ClickableSpan>
     ): SpannableString {
-        val context = ScanApp.getInstance()
+        val context = ScanApp.instance
         val color = ContextCompat.getColor(context, android.R.color.holo_blue_light)
         val spannableString = SpannableString(text)
-        if (startPosition != null && endPosition != null) {
-            startPosition.forEachIndexed { index, i ->
+
+        if (startPosition.size > 0) {
+            for (mutableEntry in startPosition) {
                 spannableString.setSpan(
                     ForegroundColorSpan(color),
-                    startPosition.get(index),
-                    endPosition.get(index) + 1,
+                    mutableEntry.value.first,
+                    mutableEntry.value.second,
                     0
                 )
-//                spannableString.setSpan(clickableSpan,startPosition.get(index), endPosition.get(index)+1, 0)
+                spannableString.setSpan(object : ClickableSpan() {
+                    override fun onClick(view: View) {
+                        param.onSpanClick(mutableEntry.key)
+                    }
+                }, mutableEntry.value.first, mutableEntry.value.second, 0)
             }
         }
         return spannableString

@@ -1,7 +1,6 @@
 package com.scancriteria.scanproperty
 
 import android.text.TextUtils
-import android.util.Log
 import com.scancriteria.base.BasePresenter
 import com.scancriteria.network.NetworkUtils
 import com.scancriteria.network.WebApi
@@ -33,7 +32,6 @@ class ScanPropertiesPresenter(scanProperty: ScanProperty?) : BasePresenter<ScanP
             var getScanPropertiesDeferred = WebApi.retrofitService.getScanData()
             try {
                 val listResult = getScanPropertiesDeferred.await()
-                Log.d("amit", "response:" + listResult)
                 view()?.showScanProperties(listResult)
                 view()?.hideProgressbar()
             } catch (e: Exception) {

@@ -9,7 +9,7 @@ object NetworkUtils {
     val isNetworkAvailable: Boolean
         get() {
             val connectivityManager =
-                ScanApp.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+                ScanApp.instance.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             val activeNetworkInfo = connectivityManager.activeNetworkInfo
             return activeNetworkInfo != null && activeNetworkInfo.isConnected
         }

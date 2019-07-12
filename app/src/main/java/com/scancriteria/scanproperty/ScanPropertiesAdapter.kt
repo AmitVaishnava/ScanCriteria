@@ -97,8 +97,9 @@ class ScanPropertiesAdapter(scanPropertiesAdapterListener: ScanPropertiesAdapter
             nameTextView.movementMethod = LinkMovementMethod.getInstance()
             val context = itemView.context
             var valueText: String = item.text.toString()
-            var startPosition: MutableList<Int>? = null
-            var endPosition: MutableList<Int>? = null
+//            var startPosition: MutableList<Int>? = null
+//            var endPosition: MutableList<Int>? = null
+            var positionVariable = HashMap<String, kotlin.Pair<Int, Int>>()
             item.variable?.let {
                 for ((key, value) in item.variable) {
                     if (value.type.equals(Constants.TYPE_INDICATOR)) {
@@ -108,12 +109,10 @@ class ScanPropertiesAdapter(scanPropertiesAdapterListener: ScanPropertiesAdapter
                         var value = context.getString(R.string.brackets, value.values?.get(0).toString())
                         valueText = valueText.replace(key, value)
                         if (valueText.contains(context.getString(R.string.open_brackets))) {
-                            if (startPosition == null) {
-                                startPosition = ArrayList<Int>()
-                                endPosition = ArrayList<Int>()
-                            }
-                            startPosition?.add(valueText.indexOf(value))
-                            endPosition?.add(valueText.indexOf(value) + value.length)
+                            positionVariable?.put(
+                                key,
+                                Pair(valueText.indexOf(value), valueText.indexOf(value) + value.length + 1)
+                            )
                         }
                     }
                 }
@@ -128,15 +127,23 @@ class ScanPropertiesAdapter(scanPropertiesAdapterListener: ScanPropertiesAdapter
 //                    }
 //                }
 //            }
-            if (startPosition == null && endPosition == null)
+            if (positionVariable.size <= 0)
                 nameTextView.text = valueText
             else {
                 var spannable = UiUtils.spannableBlueBrackets(
-                    valueText, startPosition, endPosition
+                    valueText, positionVariable, object : SpannableListener {
+                        override fun onSpanClick(key: String) {
+
+                        }
+                    }
                 )
                 nameTextView.text = spannable
             }
         }
+    }
+
+    interface SpannableListener {
+        fun onSpanClick(position: String)
     }
 
 //    var clickableSpan: ClickableSpan = object : ClickableSpan() {
