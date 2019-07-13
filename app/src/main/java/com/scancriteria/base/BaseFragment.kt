@@ -33,14 +33,14 @@ abstract class BaseFragment<T : BaseContract.BaseUserActionsListener> :
     }
 
     override fun showNetworkError() {
-        Toast.makeText(activity, getString(R.string.no_internet_connection_msg), Toast.LENGTH_SHORT)
+        Toast.makeText(activity, getString(R.string.no_internet_connection_msg), Toast.LENGTH_SHORT).show()
     }
 
     override fun showErrorMsg(errorMsg: String) {
-        Toast.makeText(activity, errorMsg, Toast.LENGTH_SHORT)
+        Toast.makeText(activity, errorMsg, Toast.LENGTH_SHORT).show()
     }
 
     override fun showDefaultError() {
-        Toast.makeText(activity, getString(R.string.default_error_msg), Toast.LENGTH_SHORT)
+        Toast.makeText(activity, getString(R.string.default_error_msg), Toast.LENGTH_SHORT).show()
     }
 }

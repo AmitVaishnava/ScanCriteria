@@ -14,25 +14,27 @@ import com.scancriteria.utils.UiUtils
 
 class ScanPropertiesAdapter(scanPropertiesAdapterListener: ScanPropertiesAdapterListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    val PARENT_VIEW = 0
-    val CHILD_VIEW = 1
+
+    private val DEFAULT_VALUE = 0
+    private val PARENT_VIEW = 0
+    private val CHILD_VIEW = 1
 
     var enableChildView: Boolean = false
         set(value) {
             field = value
         }
 
-    var listener = scanPropertiesAdapterListener
+    var scanPropertieslistener = scanPropertiesAdapterListener
     var scanProperties = listOf<ScanProperty>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
-    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): RecyclerView.ViewHolder {
-        if (p1 == PARENT_VIEW) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        if (viewType == PARENT_VIEW) {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.adapter_scan_property, parent, false)
-            return ViewHolder(view)
+            return ParentViewHolder(view)
         } else {
             val childView =
                 LayoutInflater.from(parent.context).inflate(R.layout.adapter_scan_child_property, parent, false)
@@ -49,10 +51,10 @@ class ScanPropertiesAdapter(scanPropertiesAdapterListener: ScanPropertiesAdapter
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
-        if (viewHolder is ViewHolder) {
+        if (viewHolder is ParentViewHolder) {
             val item = scanProperties[position]
             viewHolder.itemView.setOnClickListener {
-                listener.onItemClick(position)
+                scanPropertieslistener.onItemClick(position)
             }
             viewHolder.bind(item)
         } else {
@@ -70,14 +72,13 @@ class ScanPropertiesAdapter(scanPropertiesAdapterListener: ScanPropertiesAdapter
         return PARENT_VIEW
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ParentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.name_txt)
         val tagTaxtView: TextView = itemView.findViewById(R.id.tag_txt)
         fun bind(item: ScanProperty) {
-            val res = itemView.context.resources
             nameTextView.text = item.name
             tagTaxtView.text = item.tag
-            if (Constants.GREEN.equals(item.color))
+            if (Constants.ScanVariableColor.GREEN.equals(item.color))
                 tagTaxtView.setTextColor(Color.GREEN)
             else
                 tagTaxtView.setTextColor(Color.RED)
@@ -89,51 +90,50 @@ class ScanPropertiesAdapter(scanPropertiesAdapterListener: ScanPropertiesAdapter
     }
 
     inner class ChildViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        //        private lateinit var clickableSpan: Array<ClickableSpan>
         val nameTextView: TextView = itemView.findViewById(R.id.name_txt)
 
         fun bind(item: ScanProperty.Criteria) {
             nameTextView.movementMethod = LinkMovementMethod.getInstance()
             val context = itemView.context
-            var valueText: String = item.text.toString()
-//            var startPosition: MutableList<Int>? = null
-//            var endPosition: MutableList<Int>? = null
-            var positionVariable = HashMap<String, kotlin.Pair<Int, Int>>()
+            var criteriaTextvalue: String = item.text.toString()
+            val positionVariable = HashMap<String, Pair<Int, Int>>()
+
             item.variable?.let {
                 for ((key, value) in item.variable) {
-                    if (value.type.equals(Constants.TYPE_INDICATOR)) {
-                        valueText = value.default_value.toString()
 
-                    } else if (value.type.equals(Constants.TYPE_VALUE)) {
-                        var value = context.getString(R.string.brackets, value.values?.get(0).toString())
-                        valueText = valueText.replace(key, value)
-                        if (valueText.contains(context.getString(R.string.open_brackets))) {
-                            positionVariable?.put(
-                                key,
-                                Pair(valueText.indexOf(value), valueText.indexOf(value) + value.length + 1)
+                    var defaultValue = ""
+                    if (value.type.equals(Constants.ScanVariableType.INDICATOR_TYPE)) {
+                        defaultValue = context.getString(R.string.brackets, value.default_value.toString())
+                    }
+
+                    if (value.type.equals(Constants.ScanVariableType.VALUE_TYPE)) {
+                        defaultValue =
+                            context.getString(R.string.brackets, value.values?.get(DEFAULT_VALUE).toString())
+                    }
+
+                    criteriaTextvalue = criteriaTextvalue.replace(key, defaultValue)
+
+                    if (criteriaTextvalue.contains(defaultValue)) {
+                        positionVariable?.put(
+                            key, Pair(
+                                criteriaTextvalue.indexOf(defaultValue),
+                                criteriaTextvalue.indexOf(defaultValue) + defaultValue.length
                             )
-                        }
+                        )
                     }
                 }
             }
 
-//            if (startPosition != null) {
-//                startPosition?.forEachIndexed { index, i ->
-//                    clickableSpan[index] = object : ClickableSpan() {
-//                        override fun onClick(textView: View) {
-//                            Log.d("amit", "asd")
-//                        }
-//                    }
-//                }
-//            }
             if (positionVariable.size <= 0)
-                nameTextView.text = valueText
+                nameTextView.text = criteriaTextvalue
             else {
-                var spannable = UiUtils.spannableBlueBrackets(
-                    valueText, positionVariable, object : SpannableListener {
+                var spannable = UiUtils.spannableBlueText(
+                    criteriaTextvalue, positionVariable, object : SpannableListener {
                         override fun onSpanClick(key: String) {
-
+                            var variable = item.variable?.get(key)
+                            if (variable != null) {
+                                scanPropertieslistener.onSubItemClick(variable)
+                            }
                         }
                     }
                 )
@@ -146,21 +146,8 @@ class ScanPropertiesAdapter(scanPropertiesAdapterListener: ScanPropertiesAdapter
         fun onSpanClick(position: String)
     }
 
-//    var clickableSpan: ClickableSpan = object : ClickableSpan() {
-//        override fun onClick(textView: View) {
-//            Log.d("amit", "asd")
-//        }}
-//    fun launchDialog(itemView: View, key: String, values: Array<String>?) {
-//        UiUtils.showUpdateDialog(itemView.context, "", values,
-//            DialogInterface.OnClickListener { dialog, which ->
-//                val hashMap: HashMap<Int, String> = HashMap<Int, String>()
-//                hashMap.put(which, key)
-//                itemView.setTag(hashMap)
-//                notifyDataSetChanged()
-//            })
-//    }
-
     interface ScanPropertiesAdapterListener {
         fun onItemClick(position: Int)
+        fun onSubItemClick(values: ScanProperty.VariableObj?)
     }
 }

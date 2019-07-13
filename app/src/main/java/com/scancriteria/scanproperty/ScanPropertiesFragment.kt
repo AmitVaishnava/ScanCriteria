@@ -46,7 +46,7 @@ class ScanPropertiesFragment : BaseFragment<ScanPropertiesContract.ScanPropertie
 
     override fun initUserActionListener() {
         if (arguments != null) {
-            scanProperty = arguments!!.getParcelable("scan_property")
+            scanProperty = arguments?.getParcelable("scan_property")
         }
         mUserActionListener = ScanPropertiesPresenter(scanProperty)
     }
@@ -62,7 +62,6 @@ class ScanPropertiesFragment : BaseFragment<ScanPropertiesContract.ScanPropertie
         scanPropertiesAdapter = ScanPropertiesAdapter(this)
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.itemAnimator = DefaultItemAnimator()
-//        recyclerView.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         recyclerView.adapter = scanPropertiesAdapter
     }
 
@@ -100,7 +99,12 @@ class ScanPropertiesFragment : BaseFragment<ScanPropertiesContract.ScanPropertie
         mScanProperties?.get(position)?.let { scanPropertiesFragmentListener.OnItemClick(it) }
     }
 
+    override fun onSubItemClick(values: ScanProperty.VariableObj?) {
+        scanPropertiesFragmentListener.onSubItemSelected(values)
+    }
+
     interface ScanPropertiesFragmentListener {
         fun OnItemClick(scanProperty: ScanProperty)
+        fun onSubItemSelected(values: ScanProperty.VariableObj?)
     }
 }

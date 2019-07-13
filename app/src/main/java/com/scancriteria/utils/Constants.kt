@@ -1,10 +1,17 @@
 package com.scancriteria.utils
 
-object Constants {
+class Constants {
+    interface ScanVariableType {
+        companion object {
+            val INDICATOR_TYPE = "indicator"
+            val VALUE_TYPE = "value"
+        }
+    }
 
-    val GREEN: String = "green"
-    val RED: String = "red"
-
-    val TYPE_INDICATOR = "indicator"
-    val TYPE_VALUE = "value"
+    interface ScanVariableColor {
+        companion object {
+            val GREEN = "green"
+            val RED = "red"
+        }
+    }
 }
