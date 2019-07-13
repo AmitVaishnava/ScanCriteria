@@ -15,16 +15,21 @@ import com.scancriteria.utils.UiUtils
 class ScanPropertiesAdapter(scanPropertiesAdapterListener: ScanPropertiesAdapterListener) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    /*
+    *Constant variable
+     */
     private val DEFAULT_VALUE = 0
     private val PARENT_VIEW = 0
     private val CHILD_VIEW = 1
 
+    //Dynamic variable
     var enableChildView: Boolean = false
         set(value) {
             field = value
         }
 
     var scanPropertieslistener = scanPropertiesAdapterListener
+    //Dynamic variable
     var scanProperties = listOf<ScanProperty>()
         set(value) {
             field = value
@@ -96,6 +101,11 @@ class ScanPropertiesAdapter(scanPropertiesAdapterListener: ScanPropertiesAdapter
             nameTextView.movementMethod = LinkMovementMethod.getInstance()
             val context = itemView.context
             var criteriaTextvalue: String = item.text.toString()
+            /*
+            *HashMap<String,Pair<Int,Int>>:
+            * String: for key
+            * Pair : Location of Left key and Right key
+            */
             val positionVariable = HashMap<String, Pair<Int, Int>>()
 
             item.variable?.let {

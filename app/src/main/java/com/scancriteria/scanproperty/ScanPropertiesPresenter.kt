@@ -1,7 +1,8 @@
 package com.scancriteria.scanproperty
 
 import android.text.TextUtils
-import android.util.Log
+import com.scancriteria.R
+import com.scancriteria.ScanApp
 import com.scancriteria.base.BasePresenter
 import com.scancriteria.network.NetworkUtils
 import com.scancriteria.network.WebApi
@@ -27,7 +28,7 @@ class ScanPropertiesPresenter(scanProperty: ScanProperty?) : BasePresenter<ScanP
         }
 
         if (!NetworkUtils.isNetworkAvailable) {
-            view()?.showErrorMsg("Network error")
+            view()?.showErrorMsg(ScanApp.instance.getString(R.string.no_internet_connection_msg))
             return
         }
 
@@ -36,7 +37,6 @@ class ScanPropertiesPresenter(scanProperty: ScanProperty?) : BasePresenter<ScanP
             var getScanPropertiesDeferred = WebApi.retrofitService.getScanData()
             try {
                 val listResult = getScanPropertiesDeferred.await()
-                Log.d("amit", "response:" + listResult)
                 view()?.showScanProperties(listResult)
                 view()?.hideProgressbar()
             } catch (e: Exception) {

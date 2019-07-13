@@ -12,11 +12,15 @@ class ScanDetailPresenter(scanDetails: ScanProperty.VariableObj) : BasePresenter
 
 
     override fun getScanDetail() {
+        view()?.showProgressbar()
         scanDetail?.let {
             if (scanDetail.type.equals(Constants.ScanVariableType.INDICATOR_TYPE)) {
+                view()?.hideProgressbar()
                 view()?.showScanDetailValue(scanDetail)
-            } else
+            } else {
+                view()?.hideProgressbar()
                 scanDetail.values?.let { it1 -> view()?.showScanDetailList(it1) }
+            }
         }
     }
 

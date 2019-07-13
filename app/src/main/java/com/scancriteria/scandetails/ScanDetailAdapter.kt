@@ -9,6 +9,7 @@ import com.scancriteria.R
 
 class ScanDetailAdapter : RecyclerView.Adapter<ScanDetailAdapter.ViewHolder>() {
 
+    //dynamic variable
     var scanDetails = listOf<String>()
         set(value) {
             field = value

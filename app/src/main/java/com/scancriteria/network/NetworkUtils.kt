@@ -6,6 +6,7 @@ import com.scancriteria.ScanApp
 
 object NetworkUtils {
 
+    //chcek network connection
     val isNetworkAvailable: Boolean
         get() {
             val connectivityManager =

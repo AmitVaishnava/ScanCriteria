@@ -16,6 +16,9 @@ import com.scancriteria.scanproperty.ScanProperty
 class ScanPropertyDetailFragment : BaseFragment<ScanDetailContract.ScanDetailUserActionListener>(),
     ScanDetailContract.ScanDetailView {
 
+    /**
+     * variable declaration
+     */
     lateinit var scanDetailVariable: ScanProperty.VariableObj
     lateinit var recyclerView: RecyclerView
     lateinit var scanDetailAdapter: ScanDetailAdapter
