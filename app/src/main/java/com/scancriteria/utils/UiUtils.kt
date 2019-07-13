@@ -8,6 +8,7 @@ import android.text.style.ForegroundColorSpan
 import android.view.View
 import com.scancriteria.ScanApp
 import com.scancriteria.scanproperty.ScanPropertiesAdapter
+import java.text.DecimalFormat
 
 
 object UiUtils {
@@ -35,5 +36,10 @@ object UiUtils {
             }
         }
         return spannableString
+    }
+
+    fun getFormattedValue(value: Double?): String {
+        val decimalFormatter = DecimalFormat("0.#")
+        return decimalFormatter.format(value)
     }
 }

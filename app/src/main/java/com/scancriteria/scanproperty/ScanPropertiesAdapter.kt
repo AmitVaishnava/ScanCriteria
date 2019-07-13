@@ -113,12 +113,16 @@ class ScanPropertiesAdapter(scanPropertiesAdapterListener: ScanPropertiesAdapter
 
                     var defaultValue = ""
                     if (value.type.equals(Constants.ScanVariableType.INDICATOR_TYPE)) {
-                        defaultValue = context.getString(R.string.brackets, value.default_value.toString())
+                        defaultValue =
+                            context.getString(R.string.brackets, UiUtils.getFormattedValue(value.default_value))
                     }
 
                     if (value.type.equals(Constants.ScanVariableType.VALUE_TYPE)) {
                         defaultValue =
-                            context.getString(R.string.brackets, value.values?.get(DEFAULT_VALUE).toString())
+                            context.getString(
+                                R.string.brackets,
+                                UiUtils.getFormattedValue(value.values?.get(DEFAULT_VALUE))
+                            )
                     }
 
                     criteriaTextvalue = criteriaTextvalue.replace(key, defaultValue)

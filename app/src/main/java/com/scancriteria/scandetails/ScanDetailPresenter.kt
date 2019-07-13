@@ -19,7 +19,7 @@ class ScanDetailPresenter(scanDetails: ScanProperty.VariableObj) : BasePresenter
                 view()?.showScanDetailValue(scanDetail)
             } else {
                 view()?.hideProgressbar()
-                scanDetail.values?.let { it1 -> view()?.showScanDetailList(it1) }
+                scanDetail.values?.let { it1 -> view()?.showScanDetailList(it1.sorted()) }
             }
         }
     }

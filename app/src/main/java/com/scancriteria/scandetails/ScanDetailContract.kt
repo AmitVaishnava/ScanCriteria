@@ -8,7 +8,7 @@ class ScanDetailContract {
     interface ScanDetailView : BaseContract.BaseView {
         fun showProgressbar()
         fun hideProgressbar()
-        fun showScanDetailList(scanList: List<String>)
+        fun showScanDetailList(scanList: List<Double>)
         fun showScanDetailValue(scanValues: ScanProperty.VariableObj)
     }
 

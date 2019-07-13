@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.scancriteria.R
 import com.scancriteria.base.BaseFragment
 import com.scancriteria.scanproperty.ScanProperty
+import com.scancriteria.utils.UiUtils
 
 class ScanPropertyDetailFragment : BaseFragment<ScanDetailContract.ScanDetailUserActionListener>(),
     ScanDetailContract.ScanDetailView {
@@ -73,7 +74,7 @@ class ScanPropertyDetailFragment : BaseFragment<ScanDetailContract.ScanDetailUse
         progressBar.visibility = View.GONE
     }
 
-    override fun showScanDetailList(scanList: List<String>) {
+    override fun showScanDetailList(scanList: List<Double>) {
         scanDetailAdapter.scanDetails = scanList
     }
 
@@ -81,6 +82,6 @@ class ScanPropertyDetailFragment : BaseFragment<ScanDetailContract.ScanDetailUse
         recyclerView.visibility = View.GONE
         constraintLayoutType.visibility = View.VISIBLE
         studyTypeTextView.text = scanValues.study_type?.toUpperCase()
-        defaultValueEditText.setText(scanValues.default_value)
+        defaultValueEditText.setText(UiUtils.getFormattedValue(scanValues.default_value))
     }
 }

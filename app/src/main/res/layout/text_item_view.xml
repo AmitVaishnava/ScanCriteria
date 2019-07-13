@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-          android:id="@+id/value_text"
-          android:layout_margin="@dimen/size_10"
-          android:textColor="@android:color/white"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"/>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+    <TextView
+            android:id="@+id/value_text"
+            android:layout_margin="@dimen/size_10"
+            android:textColor="@android:color/white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Sample Text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <View
+            android:id="@+id/lines"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_2"
+            android:background="@drawable/dot_lines"
+            android:layout_margin="@dimen/size_10"
+            app:layout_constraintTop_toBottomOf="@+id/value_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="32dp"/>
+</android.support.constraint.ConstraintLayout>

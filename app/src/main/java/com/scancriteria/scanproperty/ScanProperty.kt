@@ -15,6 +15,6 @@ data class ScanProperty(
     @Parcelize
     data class VariableObj(
         val type: String?, val study_type: String?, val parameter_name: String?,
-        val min_value: String?, val max_value: String?, val default_value: String?, val values: List<String>?
+        val min_value: String?, val max_value: String?, val default_value: Double?, val values: List<Double>?
     ) : Parcelable
 }

@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.scancriteria.R
+import com.scancriteria.utils.UiUtils
 
 class ScanDetailAdapter : RecyclerView.Adapter<ScanDetailAdapter.ViewHolder>() {
 
     //dynamic variable
-    var scanDetails = listOf<String>()
+    var scanDetails = listOf<Double>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -18,12 +19,12 @@ class ScanDetailAdapter : RecyclerView.Adapter<ScanDetailAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val item = scanDetails[position]
-        viewHolder.bind(item)
+        viewHolder.bind(UiUtils.getFormattedValue(item))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.text_item_view, parent, false) as TextView
+            .inflate(R.layout.text_item_view, parent, false)
         return ViewHolder(view)
 
     }
