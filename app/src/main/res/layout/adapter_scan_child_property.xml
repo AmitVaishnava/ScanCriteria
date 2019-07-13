@@ -3,8 +3,8 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:background="#444444"
-        android:padding="10dp"
+        android:background="@color/light_grey"
+        android:padding="@dimen/size_10"
         android:layout_height="wrap_content">
 
     <TextView
@@ -13,7 +13,6 @@
             android:textColor="@android:color/white"
             android:layout_height="wrap_content"
             tools:text="Sample text"
-            tools:ignore="MissingConstraints"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>

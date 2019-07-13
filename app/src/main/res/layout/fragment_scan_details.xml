@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-        android:background="#444444"
+        android:background="@color/light_grey"
         android:layout_height="match_parent">
 
     <include layout="@layout/fragment_scan_properties"/>
@@ -23,53 +23,52 @@
                 tools:text="Study type text"
                 android:textColor="@android:color/white"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginStart="@dimen/size_16"
+                android:layout_marginTop="@dimen/size_24"
                 app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-                android:text="Set Parameters"
+                android:text="@string/set_parameters"
                 android:layout_width="wrap_content"
                 android:textColor="@android:color/white"
                 android:layout_height="wrap_content"
                 android:id="@+id/parameter_txt_view"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="16dp"
-                app:layout_goneMarginTop="24dp"
+                android:layout_marginStart="@dimen/size_16"
+                app:layout_goneMarginTop="@dimen/size_24"
                 app:layout_constraintTop_toBottomOf="@+id/study_type_txt_view" android:layout_marginTop="24dp"/>
         <View
                 android:layout_width="0dp"
                 android:layout_height="100dp"
-                android:background="#ffffff"
+                android:background="@android:color/white"
                 android:id="@+id/view2"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginRight="@dimen/size_10"
+                android:layout_marginLeft="@dimen/size_10"
                 app:layout_constraintTop_toBottomOf="@+id/parameter_txt_view" app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintVertical_bias="0.100000024"
         />
         <TextView
-                android:text="Period"
+                android:text="@string/period"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView2"
                 app:layout_constraintTop_toTopOf="@+id/view2"
                 app:layout_constraintStart_toStartOf="@+id/view2"
-                android:layout_marginStart="8dp"/>
+                android:layout_marginStart="@dimen/size_10"/>
         <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:text="Name"
-                android:ems="10"
+                tools:text="Name"
                 android:id="@+id/default_value_edt_txt"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 app:layout_constraintTop_toTopOf="@+id/textView2"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
-                android:layout_marginStart="8dp"/>
+                android:layout_marginStart="@dimen/size_10"/>
 
     </android.support.constraint.ConstraintLayout>
 
