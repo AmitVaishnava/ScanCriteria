@@ -37,38 +37,41 @@
                 android:layout_marginStart="@dimen/size_16"
                 app:layout_goneMarginTop="@dimen/size_24"
                 app:layout_constraintTop_toBottomOf="@+id/study_type_txt_view" android:layout_marginTop="24dp"/>
-        <View
-                android:layout_width="0dp"
-                android:layout_height="100dp"
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
                 android:background="@android:color/white"
-                android:id="@+id/view2"
                 android:layout_marginRight="@dimen/size_10"
                 android:layout_marginLeft="@dimen/size_10"
+                android:layout_marginTop="@dimen/size_24"
                 app:layout_constraintTop_toBottomOf="@+id/parameter_txt_view" app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0.100000024"
-        />
-        <TextView
-                android:text="@string/period"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView2"
-                app:layout_constraintTop_toTopOf="@+id/view2"
-                app:layout_constraintStart_toStartOf="@+id/view2"
-                android:layout_marginStart="@dimen/size_10"/>
-        <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                tools:text="Name"
-                android:id="@+id/default_value_edt_txt"
-                android:layout_marginTop="10dp"
-                app:layout_constraintTop_toTopOf="@+id/textView2"
-                android:layout_marginEnd="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView2"
-                android:layout_marginStart="@dimen/size_10"/>
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:text="@string/period"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView2"
+                    android:layout_marginRight="@dimen/size_24"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    tools:text="Name"
+                    android:id="@+id/default_value_edt_txt"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toTopOf="@+id/textView2"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginLeft="@dimen/size_24"
+                    app:layout_constraintStart_toEndOf="@+id/textView2"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+        </android.support.constraint.ConstraintLayout>
+
 
     </android.support.constraint.ConstraintLayout>
 
