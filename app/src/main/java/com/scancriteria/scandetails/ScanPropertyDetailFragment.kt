@@ -20,13 +20,13 @@ class ScanPropertyDetailFragment : BaseFragment<ScanDetailContract.ScanDetailUse
     /**
      * variable declaration
      */
-    lateinit var scanDetailVariable: ScanProperty.VariableObj
-    lateinit var recyclerView: RecyclerView
-    lateinit var scanDetailAdapter: ScanDetailAdapter
-    lateinit var progressBar: View
-    lateinit var constraintLayoutType: ConstraintLayout
-    lateinit var studyTypeTextView: TextView
-    lateinit var defaultValueEditText: EditText
+    private lateinit var scanDetailVariable: ScanProperty.VariableObj
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var scanDetailAdapter: ScanDetailAdapter
+    private lateinit var progressBar: View
+    private lateinit var constraintLayoutType: ConstraintLayout
+    private lateinit var studyTypeTextView: TextView
+    private lateinit var defaultValueEditText: EditText
 
     companion object {
         fun newInstance(values: ScanProperty.VariableObj): ScanPropertyDetailFragment {

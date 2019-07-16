@@ -17,12 +17,12 @@ class ScanPropertiesFragment : BaseFragment<ScanPropertiesContract.ScanPropertie
     ScanPropertiesContract.ScanPropertiesView,
     ScanPropertiesAdapter.ScanPropertiesAdapterListener {
 
-    lateinit var recyclerView: RecyclerView
-    lateinit var scanPropertiesAdapter: ScanPropertiesAdapter
-    lateinit var progressBar: View
-    lateinit var scanPropertiesFragmentListener: ScanPropertiesFragmentListener
-    var mScanProperties: List<ScanProperty>? = null
-    var scanProperty: ScanProperty? = null
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var scanPropertiesAdapter: ScanPropertiesAdapter
+    private lateinit var progressBar: View
+    private lateinit var scanPropertiesFragmentListener: ScanPropertiesFragmentListener
+    private var mScanProperties: List<ScanProperty>? = null
+    private var scanProperty: ScanProperty? = null
 
     companion object {
         fun newInstance(): ScanPropertiesFragment {

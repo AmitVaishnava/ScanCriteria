@@ -10,7 +10,6 @@ class ScanApp : Application() {
     }
 
     companion object {
-
         lateinit var instance: ScanApp
     }
 }

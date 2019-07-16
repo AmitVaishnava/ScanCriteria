@@ -32,7 +32,7 @@ class ScanDetailAdapter : RecyclerView.Adapter<ScanDetailAdapter.ViewHolder>() {
     override fun getItemCount() = scanDetails.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val valueText: TextView = view.findViewById(R.id.value_text)
+        private val valueText: TextView = view.findViewById(R.id.value_text)
         fun bind(item: String) {
             valueText.text = item
         }

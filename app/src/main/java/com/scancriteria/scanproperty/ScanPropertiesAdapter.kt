@@ -28,7 +28,7 @@ class ScanPropertiesAdapter(scanPropertiesAdapterListener: ScanPropertiesAdapter
             field = value
         }
 
-    var scanPropertieslistener = scanPropertiesAdapterListener
+    private var scanPropertieslistener = scanPropertiesAdapterListener
     //Dynamic variable
     var scanProperties = listOf<ScanProperty>()
         set(value) {
@@ -78,8 +78,8 @@ class ScanPropertiesAdapter(scanPropertiesAdapterListener: ScanPropertiesAdapter
     }
 
     inner class ParentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nameTextView: TextView = itemView.findViewById(R.id.name_txt)
-        val tagTaxtView: TextView = itemView.findViewById(R.id.tag_txt)
+        private val nameTextView: TextView = itemView.findViewById(R.id.name_txt)
+        private val tagTaxtView: TextView = itemView.findViewById(R.id.tag_txt)
         fun bind(item: ScanProperty) {
             nameTextView.text = item.name
             tagTaxtView.text = item.tag
@@ -95,7 +95,7 @@ class ScanPropertiesAdapter(scanPropertiesAdapterListener: ScanPropertiesAdapter
     }
 
     inner class ChildViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nameTextView: TextView = itemView.findViewById(R.id.name_txt)
+        private val nameTextView: TextView = itemView.findViewById(R.id.name_txt)
 
         fun bind(item: ScanProperty.Criteria) {
             nameTextView.movementMethod = LinkMovementMethod.getInstance()

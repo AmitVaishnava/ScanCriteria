@@ -8,7 +8,7 @@ class ScanDetailPresenter(scanDetails: ScanProperty.VariableObj) : BasePresenter
     ScanDetailContract.ScanDetailUserActionListener {
 
 
-    var scanDetail = scanDetails
+    private var scanDetail = scanDetails
 
 
     override fun getScanDetail() {
